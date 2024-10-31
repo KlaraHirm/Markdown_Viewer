@@ -17,6 +17,16 @@ fun main() {
     // Create a button to load a file
     val loadButton = JButton("Load Markdown File")
 
+    // Create a JTextArea to display the content of the file
+    val textArea = JTextArea()
+    textArea.isEditable = false
+    textArea.background = backgroundColor
+
+    // Add a scroll pane for the text area
+    val scrollPane = JScrollPane(textArea)
+    scrollPane.verticalScrollBarPolicy = JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+    scrollPane.preferredSize = Dimension(580, 300)
+
     // Add an action listener to the button
     loadButton.addActionListener {
         val fileChooser = JFileChooser()
@@ -26,7 +36,10 @@ fun main() {
             val selectedFile: File = fileChooser.selectedFile
             if (selectedFile.extension == "md") {
                 try {
-                    print("correct")
+                    val content = selectedFile.readText()
+                    textArea.text = content
+                    frame.title = "Markdown Viewer - ${selectedFile.absolutePath}"
+                    loadButton.text = "Load Different Markdown File"
                 } catch (e: Exception) {
                     print(e)
                 }
@@ -37,6 +50,7 @@ fun main() {
     }
 
     panel.add(loadButton, BorderLayout.NORTH)
+    panel.add(scrollPane, BorderLayout.CENTER)
 
     frame.contentPane = panel
 
