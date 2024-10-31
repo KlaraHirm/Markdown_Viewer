@@ -41,10 +41,10 @@ fun main() {
                     frame.title = "Markdown Viewer - ${selectedFile.absolutePath}"
                     loadButton.text = "Load Different Markdown File"
                 } catch (e: Exception) {
-                    print(e)
+                    JOptionPane.showMessageDialog(frame, "Error reading the file.", "File Error", JOptionPane.ERROR_MESSAGE)
                 }
             } else {
-                print("wrong extension")
+                JOptionPane.showMessageDialog(frame, "Please select a Markdown (.md) file.", "Invalid File", JOptionPane.ERROR_MESSAGE)
             }
         }
     }
