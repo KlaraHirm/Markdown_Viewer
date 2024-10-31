@@ -13,6 +13,11 @@ fun main() {
     panel.layout = BorderLayout()
     panel.background = backgroundColor
 
+    // Create a button to load a file
+    val loadButton = JButton("Load Markdown File")
+
+    panel.add(loadButton, BorderLayout.NORTH)
+
     frame.contentPane = panel
 
     frame.isVisible = true
